@@ -1,3 +1,7 @@
 local process = zune.process
 
-process.run("zune", { "run", "tests" }, { stdout = "inherit", stderr = "inherit" })
+local child = process.run("zune", { "run", "tests" }, { stdout = "inherit", stderr = "inherit" })
+
+if not child.ok then
+    process.exit(child.code)
+end

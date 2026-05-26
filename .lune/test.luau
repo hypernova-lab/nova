@@ -1,3 +1,7 @@
 local process = require("@lune/process")
 
-process.exec("lune", { "run", "tests" }, { stdio = "inherit" })
+local child = process.exec("lune", { "run", "tests" }, { stdio = "inherit" })
+
+if not child.ok then
+    process.exit(child.code)
+end
