@@ -1,3 +1,7 @@
 local process = require("@lute/process")
 
-process.run({ "lute", "run", "tests" }, { stdio = "inherit" })
+local child = process.run({ "lute", "run", "tests" }, { stdio = "inherit" })
+
+if not child.ok then
+    process.exit(child.exitcode)
+end
